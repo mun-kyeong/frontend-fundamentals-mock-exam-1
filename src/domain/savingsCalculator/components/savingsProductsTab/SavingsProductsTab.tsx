@@ -1,26 +1,17 @@
-import { SavingsGoalState } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
-import { filterSavingsProducts } from 'domain/savingsCalculator/utils/filterSavingsProducts';
 import { Assets, colors, ListRow } from 'tosslib';
 import { SavingsProduct } from 'types/savingsProduct';
 
 interface SavingsProductsTabProps {
-  savingsGoalState: SavingsGoalState;
-  savingsProductList: SavingsProduct[];
+  filteredProducts: SavingsProduct[];
   handleSelectProduct: (productId: string) => void;
   selectSavingsProductId: string | null;
 }
 
 export default function SavingsProductsTab({
-  savingsGoalState,
-  savingsProductList,
+  filteredProducts,
   handleSelectProduct,
   selectSavingsProductId,
 }: SavingsProductsTabProps) {
-  const filteredProducts = filterSavingsProducts({
-    products: savingsProductList,
-    goal: savingsGoalState,
-  });
-
   return (
     <>
       {filteredProducts.map(product => (
