@@ -1,7 +1,7 @@
 export type SavingsGoalState = {
-  targetAmount: string | null;
-  monthlyDeposit: string | null;
-  savingsTerm: string | null;
+  targetAmount: number | null;
+  monthlyDeposit: number | null;
+  savingsTerm: number | null;
 };
 
 export type SavingsGoalStateKeys = keyof SavingsGoalState;

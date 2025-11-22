@@ -27,6 +27,18 @@ export function SavingsCalculatorPage() {
     fetchSavingsProducts();
   }, []);
 
+  const filteredProducts = savingsProductList.filter(product => {
+    const meetsMonthlyDepositCondition =
+      savingsGoalState.monthlyDeposit === null ||
+      (product.minMonthlyAmount <= savingsGoalState.monthlyDeposit &&
+        savingsGoalState.monthlyDeposit <= product.maxMonthlyAmount);
+
+    const meetsSavingsTermCondition =
+      savingsGoalState.savingsTerm === null || product.availableTerms === savingsGoalState.savingsTerm;
+
+    return meetsMonthlyDepositCondition && meetsSavingsTermCondition;
+  });
+
   return (
     <>
       <NavigationBar title="적금 계산기" />
@@ -47,7 +59,7 @@ export function SavingsCalculatorPage() {
         </Tab.Item>
       </Tab>
 
-      {savingsProductList.map(product => (
+      {filteredProducts.map(product => (
         <ListRow
           key={product.id}
           contents={

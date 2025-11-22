@@ -20,8 +20,8 @@ export default function SavingsGoalForm({ updateSavingsGoal, savingsGoalState }:
     updateSavingsGoal(value ? parseInt(value) : null, target);
   };
 
-  const handleSavingsTermChange = (value: string | null, target: SavingsGoalStateKeys) => {
-    updateSavingsGoal(value ? parseInt(value) : null, target);
+  const handleSavingsTermChange = (value: number | null, target: SavingsGoalStateKeys) => {
+    updateSavingsGoal(value || null, target);
   };
 
   return (
@@ -30,7 +30,7 @@ export default function SavingsGoalForm({ updateSavingsGoal, savingsGoalState }:
         label="목표 금액"
         placeholder="목표 금액을 입력하세요"
         suffix="원"
-        value={savingsGoalState.targetAmount || ''}
+        value={savingsGoalState.targetAmount?.toString() || ''}
         onChange={e => handleTargetAmountChange(e, SavingsGoalField.targetAmount)}
       />
       <Spacing size={16} />
@@ -38,7 +38,7 @@ export default function SavingsGoalForm({ updateSavingsGoal, savingsGoalState }:
         label="월 납입액"
         placeholder="희망 월 납입액을 입력하세요"
         suffix="원"
-        value={savingsGoalState.monthlyDeposit || ' '}
+        value={savingsGoalState.monthlyDeposit?.toString() || ''}
         onChange={e => handleTargetAmountChange(e, SavingsGoalField.monthlyDeposit)}
       />
       <Spacing size={16} />
