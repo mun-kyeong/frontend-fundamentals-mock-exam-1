@@ -1,22 +1,14 @@
 import { savingsProducts } from 'api/savingsProducts';
+import SavingsGoalForm from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm';
+import useSavingsGoalForm from 'domain/savingsCalculator/components/savingsGoalForm/useSavingsGoalForm';
 import { useEffect, useState } from 'react';
-import {
-  Assets,
-  Border,
-  colors,
-  isHttpError,
-  ListHeader,
-  ListRow,
-  NavigationBar,
-  SelectBottomSheet,
-  Spacing,
-  Tab,
-  TextField,
-} from 'tosslib';
+import { Border, colors, isHttpError, ListRow, NavigationBar, Spacing, Tab } from 'tosslib';
 import { SavingsProduct } from 'types/savingsProduct';
 
 export function SavingsCalculatorPage() {
   const [savingsProductList, setSavingsProductList] = useState<SavingsProduct[]>([]);
+
+  const { savingsGoalState, updateSavingsGoal } = useSavingsGoalForm();
 
   useEffect(() => {
     async function fetchSavingsProducts() {
@@ -40,16 +32,7 @@ export function SavingsCalculatorPage() {
       <NavigationBar title="적금 계산기" />
 
       <Spacing size={16} />
-
-      <TextField label="목표 금액" placeholder="목표 금액을 입력하세요" suffix="원" />
-      <Spacing size={16} />
-      <TextField label="월 납입액" placeholder="희망 월 납입액을 입력하세요" suffix="원" />
-      <Spacing size={16} />
-      <SelectBottomSheet label="저축 기간" title="저축 기간을 선택해주세요" value={12} onChange={() => {}}>
-        <SelectBottomSheet.Option value={6}>6개월</SelectBottomSheet.Option>
-        <SelectBottomSheet.Option value={12}>12개월</SelectBottomSheet.Option>
-        <SelectBottomSheet.Option value={24}>24개월</SelectBottomSheet.Option>
-      </SelectBottomSheet>
+      <SavingsGoalForm updateSavingsGoal={updateSavingsGoal} savingsGoalState={savingsGoalState} />
 
       <Spacing size={24} />
       <Border height={16} />
