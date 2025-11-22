@@ -1,7 +1,5 @@
-import {
-  SavingsGoalState,
-  SavingsGoalStateKeys,
-} from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
+import { SavingsGoalStateKeys } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
+import { useSavingsGoalsContext } from 'shared/context/SavingsGoalContext';
 import { SelectBottomSheet, Spacing, TextField } from 'tosslib';
 
 const SavingsGoalField = {
@@ -10,18 +8,16 @@ const SavingsGoalField = {
   savingsTerm: 'savingsTerm',
 } as const;
 
-interface SavingsGoalFormProps {
-  updateSavingsGoal: (value: number | null, field: SavingsGoalStateKeys) => void;
-  savingsGoalState: SavingsGoalState;
-}
-export default function SavingsGoalForm({ updateSavingsGoal, savingsGoalState }: SavingsGoalFormProps) {
+export default function SavingsGoalForm() {
+  const { savingsGoalState, updateSavingsGoal } = useSavingsGoalsContext();
+
   const handleTargetAmountChange = (e: React.ChangeEvent<HTMLInputElement>, target: SavingsGoalStateKeys) => {
     const value = e.target.value.replace(/[^0-9]/g, '');
-    updateSavingsGoal(value ? parseInt(value) : null, target);
+    updateSavingsGoal({ value: value ? parseInt(value) : null, field: target });
   };
 
   const handleSavingsTermChange = (value: number | null, target: SavingsGoalStateKeys) => {
-    updateSavingsGoal(value || null, target);
+    updateSavingsGoal({ value: value || null, field: target });
   };
 
   return (

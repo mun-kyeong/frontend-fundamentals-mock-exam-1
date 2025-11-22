@@ -1,5 +1,6 @@
 import { SavingsCalculatorPage } from 'domain/savingsCalculator/SavingsCalculatorPage';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
+import { SavingsCoalProvider } from 'shared/context/SavingsGoalContext';
 
 const router = createBrowserRouter([
   {
@@ -13,5 +14,9 @@ const router = createBrowserRouter([
 ]);
 
 export function Routes() {
-  return <RouterProvider router={router} />;
+  return (
+    <SavingsCoalProvider>
+      <RouterProvider router={router} />
+    </SavingsCoalProvider>
+  );
 }

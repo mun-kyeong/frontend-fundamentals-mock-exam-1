@@ -10,10 +10,15 @@ const initialSavingsGoalState: SavingsGoalState = {
   savingsTerm: null,
 };
 
+export interface UpdateSavingsGoalProps {
+  value: number | null;
+  field: SavingsGoalStateKeys;
+}
+
 export default function useSavingsGoalForm() {
   const [savingsGoalState, setSavingsGoalState] = useState<SavingsGoalState>(initialSavingsGoalState);
 
-  const updateSavingsGoal = (value: number | null, field: SavingsGoalStateKeys) => {
+  const updateSavingsGoal = ({ value, field }: UpdateSavingsGoalProps) => {
     setSavingsGoalState(prevState => ({
       ...prevState,
       [field]: value,

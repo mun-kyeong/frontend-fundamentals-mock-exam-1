@@ -1,19 +1,19 @@
-import { SavingsGoalState } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
 import SavingsProductsTab from 'domain/savingsCalculator/components/savingsProductsTab/SavingsProductsTab';
 import SavingsResultTab from 'domain/savingsCalculator/components/SavingsResultTab/SavingsResultTab';
 import { filterSavingsProducts } from 'domain/savingsCalculator/utils/filterSavingsProducts';
 import { useState } from 'react';
+import { useSavingsGoalsContext } from 'shared/context/SavingsGoalContext';
 import { Tab } from 'tosslib';
 import { SavingsProduct } from 'types/savingsProduct';
 
 interface ProductsTabSectionProps {
   savingsProductList: SavingsProduct[];
-  savingsGoalState: SavingsGoalState;
 }
 
 type TabValue = 'products' | 'results';
 
-export default function ProductsTabSection({ savingsProductList, savingsGoalState }: ProductsTabSectionProps) {
+export default function ProductsTabSection({ savingsProductList }: ProductsTabSectionProps) {
+  const { savingsGoalState } = useSavingsGoalsContext();
   const [selectedTab, setSelectedTab] = useState<TabValue>('products');
 
   const [selectSavingsProductId, setSelectSavingsProductId] = useState<string | null>(null);
