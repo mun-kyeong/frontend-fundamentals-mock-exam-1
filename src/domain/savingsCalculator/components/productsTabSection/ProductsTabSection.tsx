@@ -3,7 +3,7 @@ import SavingsProductsTab from 'domain/savingsCalculator/components/savingsProdu
 import SavingsResultTab from 'domain/savingsCalculator/components/SavingsResultTab/SavingsResultTab';
 import { filterSavingsProducts } from 'domain/savingsCalculator/utils/filterSavingsProducts';
 import { useState } from 'react';
-import { Spacing, Tab } from 'tosslib';
+import { Tab } from 'tosslib';
 import { SavingsProduct } from 'types/savingsProduct';
 
 interface ProductsTabSectionProps {
@@ -36,6 +36,8 @@ export default function ProductsTabSection({ savingsProductList, savingsGoalStat
     goal: savingsGoalState,
   });
 
+  const selectedProduct = savingsProductList.find(product => product.id === selectSavingsProductId) || null;
+
   return (
     <>
       <Tab onChange={e => handleTabChange(e)}>
@@ -54,9 +56,14 @@ export default function ProductsTabSection({ savingsProductList, savingsGoalStat
           selectSavingsProductId={selectSavingsProductId}
         />
       )}
-      <Spacing size={8} />
 
-      {selectedTab === 'results' && <SavingsResultTab filteredProducts={filteredProducts} />}
+      {selectedTab === 'results' && (
+        <SavingsResultTab
+          filteredProducts={filteredProducts}
+          selectedProduct={selectedProduct}
+          savingsGoalState={savingsGoalState}
+        />
+      )}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { Assets, colors, ListRow } from 'tosslib';
+import { Assets, colors, ListRow, Spacing } from 'tosslib';
 import { SavingsProduct } from 'types/savingsProduct';
 
 interface SavingsProductsTabProps {
@@ -32,6 +32,7 @@ export default function SavingsProductsTab({
           onClick={() => handleSelectProduct(product.id)}
         />
       ))}
+      <Spacing size={8} />
     </>
   );
 }
