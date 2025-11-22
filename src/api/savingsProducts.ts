@@ -1,13 +1,5 @@
 import { http } from 'tosslib';
-
-export interface SavingsProduct {
-  id: string;
-  name: string;
-  annualRate: number;
-  minMonthlyAmount: number;
-  maxMonthlyAmount: number;
-  availableTerms: number;
-}
+import { SavingsProduct } from 'types/savingsProduct';
 
 export async function savingsProducts(): Promise<SavingsProduct[]> {
   return await http.get<SavingsProduct[]>('/api/savings-products');
