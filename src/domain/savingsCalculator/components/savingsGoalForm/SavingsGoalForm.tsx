@@ -4,7 +4,7 @@ import {
 } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
 import { SelectBottomSheet, Spacing, TextField } from 'tosslib';
 
-export const SavingsGoalField = {
+const SavingsGoalField = {
   targetAmount: 'targetAmount',
   monthlyDeposit: 'monthlyDeposit',
   savingsTerm: 'savingsTerm',
