@@ -1,8 +1,9 @@
-import { savingsProducts } from 'api/savingsProducts';
 import SavingsGoalForm from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm';
 import useSavingsGoalForm from 'domain/savingsCalculator/components/savingsGoalForm/useSavingsGoalForm';
-import { useEffect, useState } from 'react';
-import { Border, colors, isHttpError, ListRow, NavigationBar, Spacing, Tab } from 'tosslib';
+import useFetchSavingsProducts from 'domain/savingsCalculator/hooks/useFetchSavingsProducts';
+import { filterSavingsProducts } from 'domain/savingsCalculator/utils/filterSavingsProducts';
+import { useState } from 'react';
+import { Border, colors, ListRow, NavigationBar, Spacing, Tab } from 'tosslib';
 import { SavingsProduct } from 'types/savingsProduct';
 
 export function SavingsCalculatorPage() {
@@ -10,33 +11,11 @@ export function SavingsCalculatorPage() {
 
   const { savingsGoalState, updateSavingsGoal } = useSavingsGoalForm();
 
-  useEffect(() => {
-    async function fetchSavingsProducts() {
-      try {
-        const products = await savingsProducts();
-        setSavingsProductList(products);
-      } catch (error) {
-        if (isHttpError(error)) {
-          console.error('HTTP Error:', error.status, error.message);
-        } else {
-          console.error('Unexpected Error:', error);
-        }
-      }
-    }
+  useFetchSavingsProducts({ setSavingsProductList });
 
-    fetchSavingsProducts();
-  }, []);
-
-  const filteredProducts = savingsProductList.filter(product => {
-    const meetsMonthlyDepositCondition =
-      savingsGoalState.monthlyDeposit === null ||
-      (product.minMonthlyAmount <= savingsGoalState.monthlyDeposit &&
-        savingsGoalState.monthlyDeposit <= product.maxMonthlyAmount);
-
-    const meetsSavingsTermCondition =
-      savingsGoalState.savingsTerm === null || product.availableTerms === savingsGoalState.savingsTerm;
-
-    return meetsMonthlyDepositCondition && meetsSavingsTermCondition;
+  const filteredProducts = filterSavingsProducts({
+    products: savingsProductList,
+    goal: savingsGoalState,
   });
 
   return (
