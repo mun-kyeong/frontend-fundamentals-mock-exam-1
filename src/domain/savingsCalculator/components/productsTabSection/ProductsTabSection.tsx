@@ -1,5 +1,5 @@
 import SavingsProductsTab from 'domain/savingsCalculator/components/savingsProductsTab/SavingsProductsTab';
-import SavingsResultTab from 'domain/savingsCalculator/components/SavingsResultTab/SavingsResultTab';
+import SavingsResultTab from 'domain/savingsCalculator/components/savingsResultTab/SavingsResultTab';
 import useSelectedProduct from 'domain/savingsCalculator/hooks/useSelectedProduct';
 import useSelectedTab from 'domain/savingsCalculator/hooks/useSelectedTab';
 import { filterSavingsProducts } from 'domain/savingsCalculator/utils/filterSavingsProducts';
