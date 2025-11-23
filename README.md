@@ -25,10 +25,6 @@
 목표 금액, 월 납입액, 저축 기간을 사용자가 입력할 수 있는 기능을 구현해주세요. <br/>
 입력한 조건에 맞춰서 하단 적금 상품 목록에 보이는 상품 목록(`ProductList`)을 조건에 맞게 필터링해서 출력해주세요.
 
-- [ ] input 입력값 유효성 검사 + (필요하다면) 간단한 테스트
-- [ ] input 렌더링 최소환
-- [ ] input 입력 디바운싱 적용 (선택)
-
 **필터링 조건**
 
 - [x] 월 납입액
@@ -72,8 +68,12 @@
 ## 추가 개선 아이디어
 
 - [ ] [기능] 에러 바운더리 제작 (global만 있어도 괜찮을듯)
+- [x] [기능]input 입력 디바운싱 적용 (선택)
+- [x] [기능]input 입력값 유효성 검사 + (필요하다면) 간단한 테스트
 - [ ] [리팩토링] 스타일 리팩토링(TS/CSS 분리) (emotion)
-- [ ] [리팩토링] ContextApi 사용해서 props Drilling 줄이기 - `savingsGoalState`, `savingsProductList`
+- [x] [리팩토링] ContextApi 사용해서 props Drilling 줄이기 - `savingsGoalState`, `savingsProductList`
+- [x] [리팩토링] input 렌더링 최소화
+- [ ] [리팩토링] 상품 목록 컴포넌트 렌더링 최소화
 
 ## 고민되는 점
 

@@ -2,7 +2,7 @@ import {
   SavingsGoalState,
   SavingsGoalStateKeys,
 } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 const initialSavingsGoalState: SavingsGoalState = {
   targetAmount: null,
@@ -18,12 +18,12 @@ export interface UpdateSavingsGoalProps {
 export default function useSavingsGoalForm() {
   const [savingsGoalState, setSavingsGoalState] = useState<SavingsGoalState>(initialSavingsGoalState);
 
-  const updateSavingsGoal = ({ value, field }: UpdateSavingsGoalProps) => {
-    setSavingsGoalState(prevState => ({
-      ...prevState,
+  const updateSavingsGoal = useCallback(({ value, field }: UpdateSavingsGoalProps) => {
+    setSavingsGoalState(prev => ({
+      ...prev,
       [field]: value,
     }));
-  };
+  }, []);
 
   return { savingsGoalState, updateSavingsGoal };
 }

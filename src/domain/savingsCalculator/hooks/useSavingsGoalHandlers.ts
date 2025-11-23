@@ -1,4 +1,5 @@
 import { SavingsGoalStateKeys } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
+import useDebounceSavingsGoal from 'domain/savingsCalculator/hooks/useDebounceSavingsGoal';
 import { useState } from 'react';
 import { useSavingsGoalsContext } from 'shared/context/SavingsGoalContext';
 import { formatNumberWithComma, stripNonNumeric } from 'shared/utils/numberFormat';
@@ -11,6 +12,8 @@ interface SavingsGoalDisplayValues {
 
 export default function useSavingsGoalHandlers() {
   const { updateSavingsGoal } = useSavingsGoalsContext();
+
+  const { setPendingValues } = useDebounceSavingsGoal();
 
   const [displayValues, setDisplayValues] = useState<SavingsGoalDisplayValues>({
     targetAmount: '',
@@ -28,10 +31,10 @@ export default function useSavingsGoalHandlers() {
       [field]: formatted,
     }));
 
-    updateSavingsGoal({
-      field,
-      value: numeric ? parseInt(numeric) : null,
-    });
+    setPendingValues(prev => ({
+      ...prev,
+      [field]: numeric ? Number(numeric) : null,
+    }));
   };
 
   const handleSavingsTermChange = (value: number | null, target: SavingsGoalStateKeys) => {

@@ -1,5 +1,6 @@
 import CalculationResult from 'domain/savingsCalculator/components/calculationResult/CalculationResult';
 import { SavingsGoalState } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
+import { useEffect } from 'react';
 import SectionPadding from 'shared/components/sectionPadding/SectionPadding';
 import { Assets, Border, colors, ListHeader, ListRow } from 'tosslib';
 import { SavingsProduct } from 'types/savingsProduct';
