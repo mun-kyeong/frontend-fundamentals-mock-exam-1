@@ -5,13 +5,13 @@ import { Border, colors, ListHeader, ListRow } from 'tosslib';
 import { SavingsProduct } from 'types/savingsProduct';
 
 interface SavingsResultTabProps {
-  filteredProducts: SavingsProduct[];
+  topRateProducts: SavingsProduct[];
   selectedProduct: SavingsProduct | null;
   savingsGoalState: SavingsGoalState;
 }
 
 export default function SavingsResultTab({
-  filteredProducts,
+  topRateProducts,
   selectedProduct,
   savingsGoalState,
 }: SavingsResultTabProps) {
@@ -25,7 +25,7 @@ export default function SavingsResultTab({
         <ListHeader title={<ListHeader.TitleParagraph fontWeight="bold">추천 상품 목록</ListHeader.TitleParagraph>} />
       </SectionPadding>
 
-      {filteredProducts.map(product => (
+      {topRateProducts.map(product => (
         <ListRow
           key={product.id}
           contents={

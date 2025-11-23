@@ -1,41 +1,36 @@
 import SavingsProductsTab from 'domain/savingsCalculator/components/savingsProductsTab/SavingsProductsTab';
 import SavingsResultTab from 'domain/savingsCalculator/components/SavingsResultTab/SavingsResultTab';
+import useSelectedProduct from 'domain/savingsCalculator/hooks/useSelectedProduct';
+import useSelectedTab from 'domain/savingsCalculator/hooks/useSelectedTab';
 import { filterSavingsProducts } from 'domain/savingsCalculator/utils/filterSavingsProducts';
-import { useState } from 'react';
+import findProductById from 'domain/savingsCalculator/utils/findProductById';
+import { useMemo } from 'react';
 import SectionPadding from 'shared/components/sectionPadding/SectionPadding';
 
 import { useSavingsGoalsContext } from 'shared/context/SavingsGoalContext';
 import { useSavingsProductsContext } from 'shared/context/SavingsProductsContext';
 import { Tab } from 'tosslib';
 
-type TabValue = 'products' | 'results';
-
 export default function ProductsTabSection() {
   const { savingsProducts } = useSavingsProductsContext();
   const { savingsGoalState } = useSavingsGoalsContext();
-  const [selectedTab, setSelectedTab] = useState<TabValue>('products');
 
-  const [selectSavingsProductId, setSelectSavingsProductId] = useState<string | null>(null);
+  const { selectedProductId, handleSelectProduct } = useSelectedProduct();
+  const { selectedTab, handleTabChange } = useSelectedTab();
 
-  const handleTabChange = (value: string) => {
-    const selectedValue = value as TabValue;
-    setSelectedTab(selectedValue);
-  };
+  const filteredProducts = useMemo(() => {
+    return filterSavingsProducts({
+      products: savingsProducts,
+      goal: savingsGoalState,
+    });
+  }, [savingsProducts, savingsGoalState]);
 
-  const handleSelectProduct = (productId: string) => {
-    if (selectSavingsProductId === productId) {
-      setSelectSavingsProductId(null);
-      return;
-    }
-    setSelectSavingsProductId(productId);
-  };
-
-  const filteredProducts = filterSavingsProducts({
-    products: savingsProducts,
-    goal: savingsGoalState,
-  });
-
-  const selectedProduct = savingsProducts.find(product => product.id === selectSavingsProductId) || null;
+  const selectedProduct = useMemo(() => {
+    return findProductById({
+      products: savingsProducts,
+      productId: selectedProductId,
+    });
+  }, [savingsProducts, selectedProductId]);
 
   return (
     <SectionPadding top={8}>
@@ -52,13 +47,13 @@ export default function ProductsTabSection() {
         <SavingsProductsTab
           filteredProducts={filteredProducts}
           handleSelectProduct={handleSelectProduct}
-          selectSavingsProductId={selectSavingsProductId}
+          selectedProductId={selectedProductId}
         />
       )}
 
       {selectedTab === 'results' && (
         <SavingsResultTab
-          filteredProducts={filteredProducts}
+          topRateProducts={filteredProducts.slice(0, 2)}
           selectedProduct={selectedProduct}
           savingsGoalState={savingsGoalState}
         />

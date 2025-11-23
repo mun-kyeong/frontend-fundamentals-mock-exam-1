@@ -1,16 +1,16 @@
-import { Assets, colors, ListRow, Spacing } from 'tosslib';
+import { Assets, colors, ListRow } from 'tosslib';
 import { SavingsProduct } from 'types/savingsProduct';
 
 interface SavingsProductsTabProps {
   filteredProducts: SavingsProduct[];
   handleSelectProduct: (productId: string) => void;
-  selectSavingsProductId: string | null;
+  selectedProductId: string | null;
 }
 
 export default function SavingsProductsTab({
   filteredProducts,
   handleSelectProduct,
-  selectSavingsProductId,
+  selectedProductId,
 }: SavingsProductsTabProps) {
   return (
     <>
@@ -28,7 +28,7 @@ export default function SavingsProductsTab({
               bottomProps={{ fontSize: 13, color: colors.grey600 }}
             />
           }
-          right={selectSavingsProductId === product.id && <Assets.Icon name="icon-check-circle-green" />}
+          right={selectedProductId === product.id && <Assets.Icon name="icon-check-circle-green" />}
           onClick={() => handleSelectProduct(product.id)}
         />
       ))}
