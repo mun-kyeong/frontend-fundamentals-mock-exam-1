@@ -15,7 +15,7 @@ interface SavingsGoalProviderProps {
   children: React.ReactNode;
 }
 
-export function SavingsCoalProvider({ children }: SavingsGoalProviderProps) {
+export function SavingsGoalProvider({ children }: SavingsGoalProviderProps) {
   const { savingsGoalState, updateSavingsGoal } = useSavingsGoalForm();
 
   return (
@@ -28,7 +28,7 @@ export function SavingsCoalProvider({ children }: SavingsGoalProviderProps) {
 export function useSavingsGoalsContext() {
   const context = useContext(SavingsGoalStateContext);
   if (!context) {
-    throw new Error('useSavingsGoalsContext must be used within a SavingsCoalProvider');
+    throw new Error('useSavingsGoalsContext must be used within a SavingsGoalProvider');
   }
   return context;
 }
