@@ -73,7 +73,7 @@
 - [ ] [리팩토링] 스타일 리팩토링(TS/CSS 분리) (emotion)
 - [x] [리팩토링] ContextApi 사용해서 props Drilling 줄이기 - `savingsGoalState`, `savingsProductList`
 - [x] [리팩토링] input 렌더링 최소화
-- [ ] [리팩토링] 상품 목록 컴포넌트 렌더링 최소화
+- [x] [리팩토링] 상품 목록 컴포넌트 렌더링 최소화
 
 ## 고민되는 점
 

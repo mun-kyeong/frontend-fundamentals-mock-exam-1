@@ -1,8 +1,8 @@
 import CalculationResult from 'domain/savingsCalculator/components/calculationResult/CalculationResult';
 import { SavingsGoalState } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
-import { useEffect } from 'react';
+import SavingsProductItem from 'domain/savingsCalculator/components/savingsProductItem/SavingsProductItem';
 import SectionPadding from 'shared/components/sectionPadding/SectionPadding';
-import { Assets, Border, colors, ListHeader, ListRow } from 'tosslib';
+import { Border, ListHeader } from 'tosslib';
 import { SavingsProduct } from 'types/savingsProduct';
 
 interface SavingsResultTabProps {
@@ -31,21 +31,11 @@ export default function SavingsResultTab({
       </SectionPadding>
 
       {topRateProducts.map(product => (
-        <ListRow
+        <SavingsProductItem
           key={product.id}
-          contents={
-            <ListRow.Texts
-              type="3RowTypeA"
-              top={product.name}
-              topProps={{ fontSize: 16, fontWeight: 'bold', color: colors.grey900 }}
-              middle={`연 이자율: ${product.annualRate}%`}
-              middleProps={{ fontSize: 14, color: colors.blue600, fontWeight: 'medium' }}
-              bottom={`${product.minMonthlyAmount.toLocaleString()}원 ~ ${product.maxMonthlyAmount.toLocaleString()}원 | ${product.availableTerms}개월`}
-              bottomProps={{ fontSize: 13, color: colors.grey600 }}
-            />
-          }
-          right={selectedProductId === product.id && <Assets.Icon name="icon-check-circle-green" />}
-          onClick={() => handleSelectProduct(product.id)}
+          product={product}
+          handleSelectProduct={handleSelectProduct}
+          selectedProductId={selectedProductId}
         />
       ))}
     </SectionPadding>
