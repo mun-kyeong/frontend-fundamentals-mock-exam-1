@@ -4,15 +4,15 @@ import { isHttpError } from 'tosslib';
 import { SavingsProduct } from 'types/savingsProduct';
 
 interface UseFetchSavingsProductsProps {
-  setSavingsProductList: React.Dispatch<React.SetStateAction<SavingsProduct[]>>;
+  setSavingsProducts: React.Dispatch<React.SetStateAction<SavingsProduct[]>>;
 }
 
-export default function useFetchSavingsProducts({ setSavingsProductList }: UseFetchSavingsProductsProps) {
+export default function useFetchSavingsProducts({ setSavingsProducts }: UseFetchSavingsProductsProps) {
   useEffect(() => {
     async function fetchSavingsProducts() {
       try {
         const products = await savingsProducts();
-        setSavingsProductList(products);
+        setSavingsProducts(products);
       } catch (error) {
         if (isHttpError(error)) {
           console.error('HTTP Error:', error.status, error.message);
@@ -23,5 +23,5 @@ export default function useFetchSavingsProducts({ setSavingsProductList }: UseFe
     }
 
     fetchSavingsProducts();
-  }, [setSavingsProductList]);
+  }, [setSavingsProducts]);
 }

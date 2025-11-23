@@ -11,11 +11,11 @@ interface SavingsGoalStateContextValue {
 
 const SavingsGoalStateContext = createContext<SavingsGoalStateContextValue | null>(null);
 
-interface SavingsGoalContextProps {
+interface SavingsGoalProviderProps {
   children: React.ReactNode;
 }
 
-export function SavingsCoalProvider({ children }: SavingsGoalContextProps) {
+export function SavingsCoalProvider({ children }: SavingsGoalProviderProps) {
   const { savingsGoalState, updateSavingsGoal } = useSavingsGoalForm();
 
   return (

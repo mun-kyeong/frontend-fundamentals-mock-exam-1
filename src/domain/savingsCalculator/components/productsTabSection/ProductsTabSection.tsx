@@ -2,17 +2,15 @@ import SavingsProductsTab from 'domain/savingsCalculator/components/savingsProdu
 import SavingsResultTab from 'domain/savingsCalculator/components/SavingsResultTab/SavingsResultTab';
 import { filterSavingsProducts } from 'domain/savingsCalculator/utils/filterSavingsProducts';
 import { useState } from 'react';
-import { useSavingsGoalsContext } from 'shared/context/SavingsGoalContext';
-import { Tab } from 'tosslib';
-import { SavingsProduct } from 'types/savingsProduct';
 
-interface ProductsTabSectionProps {
-  savingsProductList: SavingsProduct[];
-}
+import { useSavingsGoalsContext } from 'shared/context/SavingsGoalContext';
+import { useSavingsProductsContext } from 'shared/context/SavingsProductsContext';
+import { Tab } from 'tosslib';
 
 type TabValue = 'products' | 'results';
 
-export default function ProductsTabSection({ savingsProductList }: ProductsTabSectionProps) {
+export default function ProductsTabSection() {
+  const { savingsProducts } = useSavingsProductsContext();
   const { savingsGoalState } = useSavingsGoalsContext();
   const [selectedTab, setSelectedTab] = useState<TabValue>('products');
 
@@ -32,11 +30,11 @@ export default function ProductsTabSection({ savingsProductList }: ProductsTabSe
   };
 
   const filteredProducts = filterSavingsProducts({
-    products: savingsProductList,
+    products: savingsProducts,
     goal: savingsGoalState,
   });
 
-  const selectedProduct = savingsProductList.find(product => product.id === selectSavingsProductId) || null;
+  const selectedProduct = savingsProducts.find(product => product.id === selectSavingsProductId) || null;
 
   return (
     <>
