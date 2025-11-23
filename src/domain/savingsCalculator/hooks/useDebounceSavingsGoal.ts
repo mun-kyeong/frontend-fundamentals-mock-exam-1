@@ -13,7 +13,7 @@ export default function useDebounceSavingsGoal() {
 
   const [pendingValues, setPendingValues] = useState<Omit<SavingsGoalState, 'savingsTerm'>>(initialPendingValues);
 
-  const debouncedPendingValues = useDebounce(pendingValues, 300);
+  const debouncedPendingValues = useDebounce(pendingValues, 1000);
 
   useEffect(() => {
     Object.entries(debouncedPendingValues).forEach(([field, value]) => {
