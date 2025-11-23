@@ -1,7 +1,5 @@
-import { SavingsGoalState } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
-import useSavingsGoalForm, {
-  UpdateSavingsGoalProps,
-} from 'domain/savingsCalculator/components/savingsGoalForm/useSavingsGoalForm';
+import { SavingsGoalState } from 'domain/savingsCalculator/types/savingsGoalForm.type';
+import useSavingsGoalForm, { UpdateSavingsGoalProps } from 'domain/savingsCalculator/hooks/useSavingsGoalForm';
 import { createContext, useContext } from 'react';
 
 interface SavingsGoalStateContextValue {

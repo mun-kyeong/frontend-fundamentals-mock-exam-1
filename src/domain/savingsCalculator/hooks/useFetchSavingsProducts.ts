@@ -1,7 +1,7 @@
 import { savingsProducts } from 'api/savingsProducts';
 import { useEffect } from 'react';
 import { isHttpError } from 'tosslib';
-import { SavingsProduct } from 'types/savingsProduct';
+import { SavingsProduct } from 'domain/savingsCalculator/types/savingsProduct';
 
 interface UseFetchSavingsProductsProps {
   setSavingsProducts: React.Dispatch<React.SetStateAction<SavingsProduct[]>>;

@@ -1,5 +1,5 @@
-import { SavingsGoalState } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
-import { SavingsProduct } from 'types/savingsProduct';
+import { SavingsGoalState } from 'domain/savingsCalculator/types/savingsGoalForm.type';
+import { SavingsProduct } from 'domain/savingsCalculator/types/savingsProduct';
 
 interface FilterSavingsProductsProps {
   products: SavingsProduct[];

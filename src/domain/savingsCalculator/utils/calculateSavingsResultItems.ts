@@ -1,10 +1,10 @@
-import { SavingsGoalState } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
+import { SavingsGoalState } from 'domain/savingsCalculator/types/savingsGoalForm.type';
 import {
   calculateExpectedProfit,
   calculateGoalDifference,
   calculateRecommendedMonthlyDeposit,
 } from 'domain/savingsCalculator/utils/savingsCalculator';
-import { SavingsProduct } from 'types/savingsProduct';
+import { SavingsProduct } from 'domain/savingsCalculator/types/savingsProduct';
 
 interface CreateSavingsResultItemsProps {
   selectedProduct: SavingsProduct;

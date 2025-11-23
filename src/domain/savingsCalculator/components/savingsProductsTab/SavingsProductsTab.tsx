@@ -1,6 +1,6 @@
 import EmptySavingsProducts from 'domain/savingsCalculator/components/emptySavingsProducts/EmptySavingsProducts';
 import SavingsProductItem from 'domain/savingsCalculator/components/savingsProductItem/SavingsProductItem';
-import { SavingsProduct } from 'types/savingsProduct';
+import { SavingsProduct } from 'domain/savingsCalculator/types/savingsProduct';
 
 interface SavingsProductsTabProps {
   filteredProducts: SavingsProduct[];

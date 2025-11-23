@@ -1,10 +1,10 @@
 import CalculationResult from 'domain/savingsCalculator/components/calculationResult/CalculationResult';
 import EmptySavingsProducts from 'domain/savingsCalculator/components/emptySavingsProducts/EmptySavingsProducts';
-import { SavingsGoalState } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
+import { SavingsGoalState } from 'domain/savingsCalculator/types/savingsGoalForm.type';
 import SavingsProductItem from 'domain/savingsCalculator/components/savingsProductItem/SavingsProductItem';
 import SectionPadding from 'shared/components/sectionPadding/SectionPadding';
 import { Border, ListHeader } from 'tosslib';
-import { SavingsProduct } from 'types/savingsProduct';
+import { SavingsProduct } from 'domain/savingsCalculator/types/savingsProduct';
 
 interface SavingsResultTabProps {
   topRateProducts: SavingsProduct[];

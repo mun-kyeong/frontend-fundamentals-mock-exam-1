@@ -1,4 +1,4 @@
-import { SavingsGoalState } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
+import { SavingsGoalState } from 'domain/savingsCalculator/types/savingsGoalForm.type';
 import { useEffect, useState } from 'react';
 import { useSavingsGoalsContext } from 'shared/context/SavingsGoalContext';
 import useDebounce from 'shared/hooks/useDebounce';

@@ -1,7 +1,4 @@
-import {
-  SavingsGoalState,
-  SavingsGoalStateKeys,
-} from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
+import { SavingsGoalState, SavingsGoalStateKeys } from 'domain/savingsCalculator/types/savingsGoalForm.type';
 import { useCallback, useState } from 'react';
 
 const initialSavingsGoalState: SavingsGoalState = {

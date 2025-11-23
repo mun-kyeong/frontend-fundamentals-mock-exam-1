@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Assets, colors, ListRow } from 'tosslib';
-import { SavingsProduct } from 'types/savingsProduct';
+import { SavingsProduct } from 'domain/savingsCalculator/types/savingsProduct';
 
 interface SavingsProductItemProps {
   product: SavingsProduct;

@@ -1,3 +1,7 @@
-export const stripNonNumeric = (value: string) => value.replace(/[^0-9]/g, '');
+export function stripNonNumeric(value: string) {
+  return value.replace(/[^0-9]/g, '');
+}
 
-export const formatNumberWithComma = (value: string) => value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+export function formatNumberWithComma(value: string) {
+  return value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}

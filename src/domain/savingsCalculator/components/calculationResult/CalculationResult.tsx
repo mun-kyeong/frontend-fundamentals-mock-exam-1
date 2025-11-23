@@ -1,13 +1,14 @@
-import { SavingsGoalState } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
 import { createSavingsResultItems } from 'domain/savingsCalculator/utils/calculateSavingsResultItems';
 import SectionPadding from 'shared/components/sectionPadding/SectionPadding';
 import { colors, ListRow } from 'tosslib';
-import { SavingsProduct } from 'types/savingsProduct';
+import { SavingsProduct } from 'domain/savingsCalculator/types/savingsProduct';
+import { SavingsGoalState } from 'domain/savingsCalculator/types/savingsGoalForm.type';
 
 interface CalculationResultProps {
   selectedProduct: SavingsProduct | null;
   savingsGoalState: SavingsGoalState;
 }
+
 export default function CalculationResult({ selectedProduct, savingsGoalState }: CalculationResultProps) {
   if (!selectedProduct) {
     return <ListRow contents={<ListRow.Texts type="1RowTypeA" top="상품을 선택해주세요." />} />;

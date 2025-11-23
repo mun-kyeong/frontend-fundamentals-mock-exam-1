@@ -1,6 +1,6 @@
 import useFetchSavingsProducts from 'domain/savingsCalculator/hooks/useFetchSavingsProducts';
 import { createContext, useContext, useState } from 'react';
-import { SavingsProduct } from 'types/savingsProduct';
+import { SavingsProduct } from 'domain/savingsCalculator/types/savingsProduct';
 
 interface SavingsProductsContextValue {
   savingsProducts: SavingsProduct[];
