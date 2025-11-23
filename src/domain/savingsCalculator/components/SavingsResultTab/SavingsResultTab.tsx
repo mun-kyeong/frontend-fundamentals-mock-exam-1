@@ -1,6 +1,7 @@
 import CalculationResult from 'domain/savingsCalculator/components/calculationResult/CalculationResult';
 import { SavingsGoalState } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
-import { Border, colors, ListHeader, ListRow, Spacing } from 'tosslib';
+import SectionPadding from 'shared/components/sectionPadding/SectionPadding';
+import { Border, colors, ListHeader, ListRow } from 'tosslib';
 import { SavingsProduct } from 'types/savingsProduct';
 
 interface SavingsResultTabProps {
@@ -15,14 +16,14 @@ export default function SavingsResultTab({
   savingsGoalState,
 }: SavingsResultTabProps) {
   return (
-    <>
+    <SectionPadding bottom={40}>
       <CalculationResult selectedProduct={selectedProduct} savingsGoalState={savingsGoalState} />
-      <Spacing size={8} />
-      <Border height={16} />
-      <Spacing size={8} />
 
-      <ListHeader title={<ListHeader.TitleParagraph fontWeight="bold">추천 상품 목록</ListHeader.TitleParagraph>} />
-      <Spacing size={12} />
+      <Border height={16} />
+
+      <SectionPadding top={8} bottom={12}>
+        <ListHeader title={<ListHeader.TitleParagraph fontWeight="bold">추천 상품 목록</ListHeader.TitleParagraph>} />
+      </SectionPadding>
 
       {filteredProducts.map(product => (
         <ListRow
@@ -41,8 +42,6 @@ export default function SavingsResultTab({
           onClick={() => {}}
         />
       ))}
-
-      <Spacing size={40} />
-    </>
+    </SectionPadding>
   );
 }

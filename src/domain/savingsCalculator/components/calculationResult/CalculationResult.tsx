@@ -1,5 +1,6 @@
 import { SavingsGoalState } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
 import { createSavingsResultItems } from 'domain/savingsCalculator/utils/calculateSavingsResultItems';
+import SectionPadding from 'shared/components/sectionPadding/SectionPadding';
 import { colors, ListRow } from 'tosslib';
 import { SavingsProduct } from 'types/savingsProduct';
 
@@ -19,7 +20,7 @@ export default function CalculationResult({ selectedProduct, savingsGoalState }:
   const savingResultItems = createSavingsResultItems({ selectedProduct, savingsGoalState });
 
   return (
-    <>
+    <SectionPadding top={8} bottom={8}>
       {savingResultItems.map(item => (
         <ListRow
           key={item.valueKey}
@@ -34,6 +35,6 @@ export default function CalculationResult({ selectedProduct, savingsGoalState }:
           }
         />
       ))}
-    </>
+    </SectionPadding>
   );
 }

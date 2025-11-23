@@ -2,6 +2,7 @@ import SavingsProductsTab from 'domain/savingsCalculator/components/savingsProdu
 import SavingsResultTab from 'domain/savingsCalculator/components/SavingsResultTab/SavingsResultTab';
 import { filterSavingsProducts } from 'domain/savingsCalculator/utils/filterSavingsProducts';
 import { useState } from 'react';
+import SectionPadding from 'shared/components/sectionPadding/SectionPadding';
 
 import { useSavingsGoalsContext } from 'shared/context/SavingsGoalContext';
 import { useSavingsProductsContext } from 'shared/context/SavingsProductsContext';
@@ -37,7 +38,7 @@ export default function ProductsTabSection() {
   const selectedProduct = savingsProducts.find(product => product.id === selectSavingsProductId) || null;
 
   return (
-    <>
+    <SectionPadding top={8}>
       <Tab onChange={e => handleTabChange(e)}>
         <Tab.Item value="products" selected={selectedTab === 'products'}>
           적금 상품
@@ -62,6 +63,6 @@ export default function ProductsTabSection() {
           savingsGoalState={savingsGoalState}
         />
       )}
-    </>
+    </SectionPadding>
   );
 }

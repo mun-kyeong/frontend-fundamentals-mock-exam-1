@@ -1,4 +1,5 @@
 import { SavingsGoalStateKeys } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
+import SectionPadding from 'shared/components/sectionPadding/SectionPadding';
 import { useSavingsGoalsContext } from 'shared/context/SavingsGoalContext';
 import { SelectBottomSheet, Spacing, TextField } from 'tosslib';
 
@@ -21,7 +22,7 @@ export default function SavingsGoalForm() {
   };
 
   return (
-    <>
+    <SectionPadding top={16} bottom={24}>
       <TextField
         label="목표 금액"
         placeholder="목표 금액을 입력하세요"
@@ -48,6 +49,6 @@ export default function SavingsGoalForm() {
         <SelectBottomSheet.Option value={12}>12개월</SelectBottomSheet.Option>
         <SelectBottomSheet.Option value={24}>24개월</SelectBottomSheet.Option>
       </SelectBottomSheet>
-    </>
+    </SectionPadding>
   );
 }

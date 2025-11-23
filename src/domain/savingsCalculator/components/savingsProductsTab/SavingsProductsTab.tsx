@@ -32,7 +32,6 @@ export default function SavingsProductsTab({
           onClick={() => handleSelectProduct(product.id)}
         />
       ))}
-      <Spacing size={8} />
     </>
   );
 }
