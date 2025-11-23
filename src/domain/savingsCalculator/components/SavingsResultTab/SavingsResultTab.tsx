@@ -1,4 +1,5 @@
 import CalculationResult from 'domain/savingsCalculator/components/calculationResult/CalculationResult';
+import EmptySavingsProducts from 'domain/savingsCalculator/components/emptySavingsProducts/EmptySavingsProducts';
 import { SavingsGoalState } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
 import SavingsProductItem from 'domain/savingsCalculator/components/savingsProductItem/SavingsProductItem';
 import SectionPadding from 'shared/components/sectionPadding/SectionPadding';
@@ -30,14 +31,18 @@ export default function SavingsResultTab({
         <ListHeader title={<ListHeader.TitleParagraph fontWeight="bold">추천 상품 목록</ListHeader.TitleParagraph>} />
       </SectionPadding>
 
-      {topRateProducts.map(product => (
-        <SavingsProductItem
-          key={product.id}
-          product={product}
-          handleSelectProduct={handleSelectProduct}
-          selectedProductId={selectedProductId}
-        />
-      ))}
+      {topRateProducts.length === 0 ? (
+        <EmptySavingsProducts />
+      ) : (
+        topRateProducts.map(product => (
+          <SavingsProductItem
+            key={product.id}
+            product={product}
+            handleSelectProduct={handleSelectProduct}
+            selectedProductId={selectedProductId}
+          />
+        ))
+      )}
     </SectionPadding>
   );
 }

@@ -1,3 +1,4 @@
+import EmptySavingsProducts from 'domain/savingsCalculator/components/emptySavingsProducts/EmptySavingsProducts';
 import SavingsProductItem from 'domain/savingsCalculator/components/savingsProductItem/SavingsProductItem';
 import { SavingsProduct } from 'types/savingsProduct';
 
@@ -12,6 +13,10 @@ export default function SavingsProductsTab({
   handleSelectProduct,
   selectedProductId,
 }: SavingsProductsTabProps) {
+  if (filteredProducts.length === 0) {
+    return <EmptySavingsProducts />;
+  }
+
   return (
     <>
       {filteredProducts.map(product => (
