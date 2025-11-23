@@ -14,7 +14,6 @@ import { Tab } from 'tosslib';
 export default function ProductsTabSection() {
   const { savingsProducts } = useSavingsProductsContext();
   const { savingsGoalState } = useSavingsGoalsContext();
-
   const { selectedProductId, handleSelectProduct } = useSelectedProduct();
   const { selectedTab, handleTabChange } = useSelectedTab();
 

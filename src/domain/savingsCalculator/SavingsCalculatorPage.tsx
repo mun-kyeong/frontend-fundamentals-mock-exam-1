@@ -7,9 +7,7 @@ export function SavingsCalculatorPage() {
     <>
       <NavigationBar title="적금 계산기" />
       <SavingsGoalForm />
-
       <Border height={16} />
-
       <ProductsTabSection />
     </>
   );

@@ -21,6 +21,7 @@ export default function SavingsGoalForm() {
         onChange={e => handleTargetAmountChange(e, SavingsGoalField.targetAmount)}
       />
       <Spacing size={16} />
+
       <TextField
         label="월 납입액"
         placeholder="희망 월 납입액을 입력하세요"
@@ -29,6 +30,7 @@ export default function SavingsGoalForm() {
         onChange={e => handleTargetAmountChange(e, SavingsGoalField.monthlyDeposit)}
       />
       <Spacing size={16} />
+
       <SelectBottomSheet
         label="저축 기간"
         title="저축 기간을 선택해주세요"

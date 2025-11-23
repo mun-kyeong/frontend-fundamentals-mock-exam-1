@@ -12,7 +12,6 @@ interface SavingsGoalDisplayValues {
 
 export default function useSavingsGoalHandlers() {
   const { updateSavingsGoal } = useSavingsGoalsContext();
-
   const { setPendingValues } = useDebounceSavingsGoal();
 
   const [displayValues, setDisplayValues] = useState<SavingsGoalDisplayValues>({
