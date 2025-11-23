@@ -1,52 +1,32 @@
-import { SavingsGoalState } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
-import { SavingsProduct } from 'types/savingsProduct';
-
 interface CalculateExpectedProfitProps {
-  savingsGoalState: SavingsGoalState;
-  selectedProduct: SavingsProduct;
+  monthlyDeposit: number;
+  term: number;
+  annualRate: number;
 }
 
-export function calculateExpectedProfit({ savingsGoalState, selectedProduct }: CalculateExpectedProfitProps) {
-  if (savingsGoalState.monthlyDeposit === null || savingsGoalState.savingsTerm === null) {
-    return 0;
-  }
-
-  const monthlyDeposit = savingsGoalState.monthlyDeposit;
-  const term = savingsGoalState.savingsTerm;
-  const rate = selectedProduct.annualRate;
-  const rateFactor = 1 + rate * 0.5;
+export function calculateExpectedProfit({ monthlyDeposit, term, annualRate }: CalculateExpectedProfitProps) {
+  const rateFactor = 1 + annualRate * 0.5;
   return Math.floor(monthlyDeposit * term * rateFactor);
 }
 
 interface CalculateGoalDifferenceProps {
-  savingsGoalState: SavingsGoalState;
+  targetAmount: number;
   expectedProfit: number;
 }
 
-export function calculateGoalDifference({ savingsGoalState, expectedProfit }: CalculateGoalDifferenceProps) {
-  if (savingsGoalState.targetAmount === null) {
-    return 0;
-  }
-  const targetAmount = savingsGoalState.targetAmount;
+export function calculateGoalDifference({ targetAmount, expectedProfit }: CalculateGoalDifferenceProps) {
   return targetAmount - expectedProfit;
 }
-
 interface CalculateRecommendedMonthlyDepositProps {
-  savingsGoalState: SavingsGoalState;
-  selectedProduct: SavingsProduct;
+  targetAmount: number;
+  term: number;
+  annualRate: number;
 }
-
 export function calculateRecommendedMonthlyDeposit({
-  savingsGoalState,
-  selectedProduct,
+  targetAmount,
+  term,
+  annualRate,
 }: CalculateRecommendedMonthlyDepositProps) {
-  if (savingsGoalState.targetAmount === null || savingsGoalState.savingsTerm === null) {
-    return 0;
-  }
-  const targetAmount = savingsGoalState.targetAmount;
-  const term = savingsGoalState.savingsTerm;
-  const rate = selectedProduct.annualRate;
-
-  const rateFactor = 1 + rate * 0.5;
+  const rateFactor = 1 + annualRate * 0.5;
   return Math.round(targetAmount / (term * rateFactor) / 1000) * 1000;
 }

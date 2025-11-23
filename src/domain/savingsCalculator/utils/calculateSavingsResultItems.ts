@@ -12,27 +12,25 @@ interface CreateSavingsResultItemsProps {
 }
 
 export function createSavingsResultItems({ selectedProduct, savingsGoalState }: CreateSavingsResultItemsProps) {
-  if (
-    savingsGoalState.monthlyDeposit === null ||
-    savingsGoalState.savingsTerm === null ||
-    savingsGoalState.targetAmount === null
-  ) {
+  if (!savingsGoalState.monthlyDeposit || !savingsGoalState.savingsTerm || !savingsGoalState.targetAmount) {
     return [];
   }
 
   const expectedProfit = calculateExpectedProfit({
-    savingsGoalState,
-    selectedProduct,
+    monthlyDeposit: savingsGoalState.monthlyDeposit,
+    term: savingsGoalState.savingsTerm,
+    annualRate: selectedProduct.annualRate,
   });
 
   const goalDifference = calculateGoalDifference({
-    savingsGoalState,
+    targetAmount: savingsGoalState.targetAmount,
     expectedProfit,
   });
 
   const recommendedMonthlyDeposit = calculateRecommendedMonthlyDeposit({
-    savingsGoalState,
-    selectedProduct,
+    targetAmount: savingsGoalState.targetAmount,
+    term: savingsGoalState.savingsTerm,
+    annualRate: selectedProduct.annualRate,
   });
 
   return [
