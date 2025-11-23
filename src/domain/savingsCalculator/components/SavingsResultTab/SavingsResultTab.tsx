@@ -1,19 +1,23 @@
 import CalculationResult from 'domain/savingsCalculator/components/calculationResult/CalculationResult';
 import { SavingsGoalState } from 'domain/savingsCalculator/components/savingsGoalForm/SavingsGoalForm.type';
 import SectionPadding from 'shared/components/sectionPadding/SectionPadding';
-import { Border, colors, ListHeader, ListRow } from 'tosslib';
+import { Assets, Border, colors, ListHeader, ListRow } from 'tosslib';
 import { SavingsProduct } from 'types/savingsProduct';
 
 interface SavingsResultTabProps {
   topRateProducts: SavingsProduct[];
   selectedProduct: SavingsProduct | null;
   savingsGoalState: SavingsGoalState;
+  handleSelectProduct: (productId: string) => void;
+  selectedProductId: string | null;
 }
 
 export default function SavingsResultTab({
   topRateProducts,
   selectedProduct,
   savingsGoalState,
+  handleSelectProduct,
+  selectedProductId,
 }: SavingsResultTabProps) {
   return (
     <SectionPadding bottom={40}>
@@ -39,7 +43,8 @@ export default function SavingsResultTab({
               bottomProps={{ fontSize: 13, color: colors.grey600 }}
             />
           }
-          onClick={() => {}}
+          right={selectedProductId === product.id && <Assets.Icon name="icon-check-circle-green" />}
+          onClick={() => handleSelectProduct(product.id)}
         />
       ))}
     </SectionPadding>

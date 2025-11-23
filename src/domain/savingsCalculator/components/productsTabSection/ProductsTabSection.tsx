@@ -56,6 +56,8 @@ export default function ProductsTabSection() {
           topRateProducts={filteredProducts.slice(0, 2)}
           selectedProduct={selectedProduct}
           savingsGoalState={savingsGoalState}
+          handleSelectProduct={handleSelectProduct}
+          selectedProductId={selectedProductId}
         />
       )}
     </SectionPadding>
